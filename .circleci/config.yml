@@ -1,0 +1,29 @@
+# This code is licensed from CircleCI to the user under the MIT license.
+# See here for details: https://circleci.com/developer/orbs/licensing
+commands:
+    echo-command:
+        description: echoコマンド
+        parameters:
+            to:
+                default: World
+                type: string
+        steps:
+            - run: echo "Hello, << parameters.to >>"
+description: My First Orb
+executors:
+    default:
+        docker:
+            - image: busybox
+jobs:
+    echo-job:
+        description: echoジョブ
+        executor: default
+        parameters:
+            to:
+                default: World
+                type: string
+        steps:
+            - echo-command:
+                to: << parameters.to >>
+version: 2.1
+
